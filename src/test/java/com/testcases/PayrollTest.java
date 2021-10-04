@@ -41,5 +41,13 @@ public class PayrollTest {
 		boolean result = emp.displayDataPrepared("Terisa");
 		Assert.assertTrue("true", result);
 	}
+	
+	@Test
+	public void whenExecutedQuery_forDisplayingDataBasedOnJoiningDate_returnsTrue() {
+		EmployeePayroll emp = new EmployeePayroll();
+		boolean result = emp.displayBasedOnDate();
+		Assert.assertTrue("true", result);
+	}
+	
 
 }
