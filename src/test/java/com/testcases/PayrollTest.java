@@ -13,7 +13,7 @@ public class PayrollTest {
 		boolean result = emp.getConnection();
 		Assert.assertTrue("true", result);
 	}
-	
+
 	@Test
 	public void whenConnectedToDatabase_forretreivingData_returnsTrue() {
 		EmployeePayroll emp = new EmployeePayroll();
@@ -21,6 +21,11 @@ public class PayrollTest {
 		Assert.assertTrue("true", result);
 	}
 
-	
+	@Test
+	public void whenConnectedToDatabase_forUpdatingData_returnsTrue() {
+		EmployeePayroll emp = new EmployeePayroll();
+		boolean result = emp.updateSalary();
+		Assert.assertTrue("true", result);
+	}
 
 }
