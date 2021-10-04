@@ -34,20 +34,54 @@ public class PayrollTest {
 		boolean result = emp.updateSalaryPrepared();
 		Assert.assertTrue("true", result);
 	}
-	
+
 	@Test
 	public void whenExecutedPreparredStatement_forDisplayingData_returnsTrue() {
 		EmployeePayroll emp = new EmployeePayroll();
 		boolean result = emp.displayDataPrepared("Terisa");
 		Assert.assertTrue("true", result);
 	}
-	
+
 	@Test
 	public void whenExecutedQuery_forDisplayingDataBasedOnJoiningDate_returnsTrue() {
 		EmployeePayroll emp = new EmployeePayroll();
 		boolean result = emp.displayBasedOnDate();
 		Assert.assertTrue("true", result);
 	}
-	
+
+	@Test
+	public void whenExecutedQuery_toGetTotalSalaryBasedOnGender_returnsTrue() {
+		EmployeePayroll emp = new EmployeePayroll();
+		emp.getTotalSalary();
+
+	}
+
+	@Test
+	public void whenExecutedQuery_toGetAverageSalaryBasedOnGender_returnsTrue() {
+		EmployeePayroll emp = new EmployeePayroll();
+		emp.getAverageSalary();
+
+	}
+
+	@Test
+	public void whenExecutedQuery_toGetMaximumSalaryBasedOnGender_returnsTrue() {
+		EmployeePayroll emp = new EmployeePayroll();
+		emp.getMaximumSalary();
+
+	}
+
+	@Test
+	public void whenExecutedQuery_toGetMinimumSalaryBasedOnGender_returnsTrue() {
+		EmployeePayroll emp = new EmployeePayroll();
+		emp.getMinimumSalary();
+
+	}
+
+	@Test
+	public void whenExecutedQuery_toGetCountOfEmployeesBasedOnGender_returnsTrue() {
+		EmployeePayroll emp = new EmployeePayroll();
+		emp.getEmployeeCount();
+
+	}
 
 }

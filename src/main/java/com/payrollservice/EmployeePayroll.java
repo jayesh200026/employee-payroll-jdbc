@@ -124,15 +124,113 @@ public class EmployeePayroll {
 		try {
 			Connection connection = makeConnection();
 			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("select * from employee_payroll where start BETWEEN CAST('2019-01-01' AS DATE) AND DATE(NOW())");
+			ResultSet resultSet = statement.executeQuery(
+					"select * from employee_payroll where start BETWEEN CAST('2019-01-01' AS DATE) AND DATE(NOW())");
 			while (resultSet.next()) {
-				System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) + " " + resultSet.getString(3) + " "
-						+ resultSet.getDouble(4) + " " + resultSet.getDate(5));
+				System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) + " " + resultSet.getString(3)
+						+ " " + resultSet.getDouble(4) + " " + resultSet.getDate(5));
 			}
 			return true;
-		}catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			return false;
 		}
-		
+
+	}
+
+	/**
+	 * Gets the total salary from employee based on their gender
+	 */
+	public void getTotalSalary() {
+		try {
+			Connection connection = makeConnection();
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement
+					.executeQuery("select gender,sum(salary) from employee_payroll group by gender");
+			while (resultSet.next()) {
+				System.out.println(resultSet.getString(1) + "  " + resultSet.getDouble(2));
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Gets the average salary from employee based on their gender
+	 */
+
+	public void getAverageSalary() {
+		try {
+			Connection connection = makeConnection();
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement
+					.executeQuery("select gender,avg(salary) from employee_payroll group by gender");
+			while (resultSet.next()) {
+				System.out.println(resultSet.getString(1) + "  " + resultSet.getDouble(2));
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Gets the maximum salary from employee based on their gender
+	 */
+	public void getMaximumSalary() {
+
+		try {
+			Connection connection = makeConnection();
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement
+					.executeQuery("select gender,max(salary) from employee_payroll group by gender");
+			while (resultSet.next()) {
+				System.out.println(resultSet.getString(1) + "  " + resultSet.getDouble(2));
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Gets the minimum salary from employee based on their gender
+	 */
+	public void getMinimumSalary() {
+		try {
+			Connection connection = makeConnection();
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement
+					.executeQuery("select gender,min(salary) from employee_payroll group by gender");
+			while (resultSet.next()) {
+				System.out.println(resultSet.getString(1) + "  " + resultSet.getDouble(2));
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Gets the employee count based on gender
+	 */
+	public void getEmployeeCount() {
+		try {
+			Connection connection = makeConnection();
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement
+					.executeQuery("select gender,count(*) from employee_payroll group by gender");
+			while (resultSet.next()) {
+				System.out.println(resultSet.getString(1) + "  " + resultSet.getInt(2));
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 }
