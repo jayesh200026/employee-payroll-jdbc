@@ -84,4 +84,12 @@ public class PayrollTest {
 
 	}
 
+	@Test
+	public void whenExecutedQuery_toInsertNewRow_returnsTrue() {
+		EmployeePayroll emp = new EmployeePayroll();
+		boolean result = emp.getInsertEmployee();
+		Assert.assertTrue(result);
+
+	}
+
 }

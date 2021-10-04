@@ -233,4 +233,19 @@ public class EmployeePayroll {
 		}
 
 	}
+
+	public boolean getInsertEmployee() {
+		Connection connection;
+		try {
+			connection = makeConnection();
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(
+					"insert into employee_payroll(name,gender,salary,start) values('Bruce','M',550000.00,'2019-05-20')");
+			return true;
+		} catch (ClassNotFoundException | SQLException e) {
+			return false;
+
+		}
+
+	}
 }
