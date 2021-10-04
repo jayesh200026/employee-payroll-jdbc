@@ -2,6 +2,7 @@ package com.payrollservice;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -47,7 +48,7 @@ public class EmployeePayroll {
 	}
 
 	/**
-	 * @return true if update is successfull
+	 * @return true if update is successful
 	 */
 	public boolean updateSalary() {
 		Employee emp = new Employee();
@@ -55,7 +56,7 @@ public class EmployeePayroll {
 		try {
 			Connection connection = makeConnection();
 			Statement statement = connection.createStatement();
-			int result = statement.executeUpdate("update employee_payroll set salary=300000 where name='Terisa'");
+			statement.executeUpdate("update employee_payroll set salary=300000 where name='Terisa'");
 			ResultSet resultSet = statement.executeQuery("select salary from employee_payroll where name='Terisa'");
 			while (resultSet.next()) {
 				if (resultSet.getDouble(1) == emp.getSalary()) {
@@ -66,5 +67,32 @@ public class EmployeePayroll {
 		} catch (ClassNotFoundException | SQLException e) {
 			return false;
 		}
+	}
+
+	/**
+	 * @return true if update is successful Uses prepared statement
+	 */
+	public boolean updateSalaryPrepared() {
+		Employee emp = new Employee();
+		emp.setSalary(300000.0);
+		try {
+			Connection connection = makeConnection();
+			Statement statement = connection.createStatement();
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("update employee_payroll set salary=? where name=?");
+			preparedStatement.setDouble(1, 300000);
+			preparedStatement.setString(2, "Tersia");
+			ResultSet resultSet = statement.executeQuery("select salary from employee_payroll where name='Terisa'");
+			while (resultSet.next()) {
+				if (resultSet.getDouble(1) == emp.getSalary()) {
+					return true;
+				}
+			}
+			return false;
+
+		} catch (ClassNotFoundException | SQLException e) {
+			return false;
+		}
+
 	}
 }

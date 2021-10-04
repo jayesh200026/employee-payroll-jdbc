@@ -28,4 +28,11 @@ public class PayrollTest {
 		Assert.assertTrue("true", result);
 	}
 
+	@Test
+	public void whenExecutedPreparredStatement_forUpdatingData_returnsTrue() {
+		EmployeePayroll emp = new EmployeePayroll();
+		boolean result = emp.updateSalaryPrepared();
+		Assert.assertTrue("true", result);
+	}
+
 }
