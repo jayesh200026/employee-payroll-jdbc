@@ -119,4 +119,20 @@ public class EmployeePayroll {
 		}
 
 	}
+
+	public boolean displayBasedOnDate() {
+		try {
+			Connection connection = makeConnection();
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery("select * from employee_payroll where start BETWEEN CAST('2019-01-01' AS DATE) AND DATE(NOW())");
+			while (resultSet.next()) {
+				System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) + " " + resultSet.getString(3) + " "
+						+ resultSet.getDouble(4) + " " + resultSet.getDate(5));
+			}
+			return true;
+		}catch (ClassNotFoundException | SQLException e) {
+			return false;
+		}
+		
+	}
 }
